@@ -16,7 +16,10 @@ PROGRAM_NAMES = [
   "REB/RTB Graduates 2023-2024",
   "REB/RTB Graduates 2024-2025",
   "AUCA",
-  "COP's"
+  "COP's",
+  "Higher Education Council",
+  "ALx",
+  "National Rehabilitation Services"
 ]
 PROGRAM_DATA = {
   "The Gym at University": {
@@ -86,6 +89,18 @@ PROGRAM_DATA = {
   "COP's": {
     "enrolled": 0,
     "completed": 429
+  },
+  "Higher Education Council": {
+    "enrolled": 12953,
+    "completed": 12953
+  },
+  "ALx": {
+    "enrolled": 27000,
+    "completed": 8425
+  },
+  "National Rehabilitation Services": {
+    "enrolled": 20305,
+    "completed": 11864
   }
 }
 
@@ -106,5 +121,8 @@ PROGRAM_DESCRIPTIONS = {
   "REB/RTB Graduates 2023-2024": "Recent TVET and secondary graduates from REB/RTB cohorts 2023–2024.",
   "REB/RTB Graduates 2024-2025": "Upcoming REB/RTB graduates transitioning into digital careers 2024–2025.",
   "AUCA": "Core AUCA academic programs embedding advanced ICT practice.",
-  "COP's": "Communities of Practice strengthening peer learning across the ecosystem."
+  "COP's": "Communities of Practice strengthening peer learning across the ecosystem.",
+  "Higher Education Council": "National Higher Education Council graduates contributing to Rwanda’s advanced talent pool.",
+  "ALx": "Pan-African ALx program shepherding learners from enrollment through graduation and into meaningful employment.",
+  "National Rehabilitation Services": "National Rehabilitation Services cohort progressing from ongoing rehabilitation trainings into fully trained graduates."
 }

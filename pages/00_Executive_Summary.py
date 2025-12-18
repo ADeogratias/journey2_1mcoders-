@@ -7,8 +7,11 @@ from utils import apply_theme, render_header, render_sidebar_nav, footer_note
 
 st.set_page_config(page_title="Executive Summary – Strategic Progress", layout="wide")
 
+st.info("Executive Summary is temporarily hidden while updates are in progress.")
+st.stop()
+
 # Sidebar theme toggle + theming
-mode = st.sidebar.radio("Appearance", ["Light", "Dark"], index=0, horizontal=True)
+mode = st.sidebar.radio("Appearance", ["Light", "Dark"], index=1, horizontal=True)
 apply_theme(mode)
 render_sidebar_nav("exec_summary")
 
@@ -63,15 +66,19 @@ with top_col_left:
 
 
 # with top_col_right:
-st.markdown("#### Cumulative Snapshot")
+st.markdown("#### Cumulative Snapshot Y1 & Y2")
 # st.markdown("#### Cumulative Snapshot")
 
 in_progress = max(total_enrolled - total_completed, 0)
 projected_total = total_completed + in_progress
 gap_raw = target_first_two_years - projected_total
+overall_total = 1000000 #adding this for now 
 gap_positive = max(gap_raw, 0)
-completed_pct = (total_completed / target_first_two_years * 100) if target_first_two_years else 0
-projected_pct = (projected_total / target_first_two_years * 100) if target_first_two_years else 0
+# completed_pct = (total_completed / target_first_two_years * 100) if target_first_two_years else 0
+# projected_pct = (projected_total / target_first_two_years * 100) if target_first_two_years else 0
+completed_pct = (total_completed / overall_total * 100) if target_first_two_years else 0
+projected_pct = (projected_total / overall_total * 100) if target_first_two_years else 0
+
 
 gauge_bg = "rgba(148,163,184,0.12)" if not is_dark else "rgba(30,41,59,0.45)"
 primary_color = "#6366F1" if not is_dark else "#A5B4FC"
@@ -83,7 +90,8 @@ completion_pulse_fig = go.Figure(
         mode="gauge+number",
         value=max(min(completed_pct, 100), 0),
         number={"suffix": "%", "font": {"size": 52, "family": "Inter, sans-serif"}},
-        title={"text": "Completion Pulse Y1 & Y2", "font": {"size": 20}},
+        # title={"text": "Completion Pulse Y1 & Y2", "font": {"size": 20}},
+        title={"text": "Overall Completion Pulse", "font": {"size": 20}},
         gauge={
             "axis": {"range": [0, 100], "tickmode": "array", "tickvals": [0, 25, 50, 75, 100]},
             "bar": {"color": primary_color, "thickness": 0.34},

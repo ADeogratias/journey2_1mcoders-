@@ -6,7 +6,7 @@ from utils import apply_theme, render_header, render_two_cards, footer_note, ren
 st.set_page_config(page_title="Digital Talent Program – Metrics", layout="wide")
 
 # Sidebar theme toggle
-mode = st.sidebar.radio("Appearance", ["Light", "Dark"], index=0, horizontal=True)
+mode = st.sidebar.radio("Appearance", ["Light", "Dark"], index=1, horizontal=True)
 apply_theme(mode)
 render_sidebar_nav("digital_talent")
 

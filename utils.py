@@ -28,7 +28,6 @@ LOGO_DARK_SVG = """
 
 SIDEBAR_LINKS = [
     {"key": "main", "path": "app.py", "label": "Overview"},
-    {"key": "exec_summary", "path": "pages/00_Executive_Summary.py", "label": "Executive Summary"},
     {"key": "gym_uni", "path": "pages/01_The_Gym_at_University.py", "label": "Gym @ University"},
     {"key": "gym_prep", "path": "pages/02_The_Gym_Preparatory_Training.py", "label": "Gym Prep"},
     {"key": "dot_rwanda", "path": "pages/03_DOT_Rwanda_Program.py", "label": "DOT Rwanda"},
@@ -46,6 +45,9 @@ SIDEBAR_LINKS = [
     {"key": "reb_2425", "path": "pages/15_REB_RTB_Graduates_2024_2025.py", "label": "REB/RTB 24–25"},
     {"key": "auca", "path": "pages/16_AUCA.py", "label": "AUCA"},
     {"key": "cops", "path": "pages/17_COP_s.py", "label": "COPs"},
+    {"key": "hec", "path": "pages/18_Higher_Education_Council.py", "label": "Higher Education Council"},
+    {"key": "alx", "path": "pages/19_ALx.py", "label": "ALx"},
+    {"key": "nrs", "path": "pages/20_National_Rehabilitation_Services.py", "label": "National Rehabilitation Services"},
 ]
 
 # ---- THEME & STYLES ----
@@ -245,6 +247,36 @@ def apply_theme(mode: str = "Light"):
         isolation: isolate;
         backdrop-filter: saturate(120%);
     }
+    .info-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.2rem;
+        margin: 1.5rem 0 2.5rem 0;
+    }
+    .info-card {
+        border-radius: 16px;
+        padding: 1.25rem 1.35rem;
+        box-shadow: 0 16px 32px rgba(15,23,42,0.18);
+        border: 1px solid rgba(255,255,255,0.08);
+        text-align: center;
+        min-height: 150px;
+    }
+    .info-card-label {
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.8rem;
+        margin-bottom: 0.65rem;
+        opacity: 0.8;
+    }
+    .info-card-value {
+        font-size: clamp(2rem, 4vw, 2.6rem);
+        font-weight: 800;
+        margin-bottom: 0.35rem;
+    }
+    .info-card-subtext {
+        font-size: 0.9rem;
+        opacity: 0.85;
+    }
     .metric-card:hover {
         transform: translateY(-6px) scale(1.02);
         box-shadow: 0 30px 55px rgba(15,23,42,0.35);
@@ -332,7 +364,7 @@ def render_header(title: str, mode: str = "Light", subtitle: str | None = None):
         if subtitle:
             st.caption(subtitle)
 
-def render_two_cards(enrolled: int, completed: int, col1_label: str="Enrolled", col2_label: str="Completed / Expected"):
+def render_two_cards(enrolled: int, completed: int, col1_label: str="Enrolled", col2_label: str="Completed"):
     st.markdown(
         f"""
         <div class="metrics-wrapper">
@@ -352,6 +384,28 @@ def render_two_cards(enrolled: int, completed: int, col1_label: str="Enrolled", 
         """,
         unsafe_allow_html=True
     )
+
+def render_info_cards(cards: list[dict[str, str | int]]) -> None:
+    if not cards:
+        return
+    default_gradient = "linear-gradient(135deg, rgba(79,70,229,0.92), rgba(14,165,233,0.9))"
+    card_blocks = []
+    for card in cards:
+        label = card.get("label", "")
+        value = card.get("value", "")
+        subtext = card.get("subtext", "")
+        gradient = card.get("gradient", default_gradient)
+        text_color = card.get("text_color", "#FFFFFF")
+        card_blocks.append(
+            f"""
+            <div class=\"info-card\" style=\"background: {gradient}; color: {text_color};\">
+                <div class=\"info-card-label\">{label}</div>
+                <div class=\"info-card-value\">{value}</div>
+                <div class=\"info-card-subtext\">{subtext}</div>
+            </div>
+            """
+        )
+    st.markdown(f"<div class='info-card-grid'>{''.join(card_blocks)}</div>", unsafe_allow_html=True)
 
 def footer_note():
     st.write("---")
