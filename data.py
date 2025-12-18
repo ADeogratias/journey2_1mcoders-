@@ -44,7 +44,7 @@ PROGRAM_DATA = {
   },
   "RISA - Training of Public IT Professionals (Up-skilled and Re-skilled)": {
     "enrolled": 0,
-    "completed": 100
+    "completed": 1052
   },
   "AUCA - Community Outreach Program": {
     "enrolled": 0,
