@@ -13,7 +13,7 @@ mode = st.sidebar.radio("Appearance", ["Light", "Dark"], index=1, horizontal=Tru
 apply_theme(mode)
 render_sidebar_nav("main")
 
-render_header("Program Metrics – Main", mode, "Cross-program performance pulse and totals.")
+render_header("One Million Coders Status Overview", mode, "Cross-program performance pulse and totals.")
 st.subheader("Aggregated totals across all programs")
 
 total_enrolled = sum(p["enrolled"] for p in PROGRAM_DATA.values())
